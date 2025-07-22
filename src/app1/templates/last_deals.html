@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="deals-header">
+    <p>10 ваших последних активных сделок:</p>
+  </div>
+
+  <table class="deals-table">
+    <thead>
+      <tr>
+        <th>Название</th>
+        <th>Стадия</th>
+        <th>Сумма</th>
+        <th>Дата создания</th>
+        <th>Дата начала</th>
+        <th>Вероятность закрытия в срок</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for deal in last_deals %}
+        <tr>
+          <td>{{ deal.TITLE }}</td>
+          <td>{{ deal.STAGE_ID }}</td>
+          <td>{{ deal.OPPORTUNITY }}</td>
+          <td>{{ deal.DATE_CREATE }}</td>
+          <td>{{ deal.BEGINDATE }}</td>
+          <td>{{ deal.UF_CRM_1752828792635 }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

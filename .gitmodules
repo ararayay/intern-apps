@@ -1,3 +1,6 @@
 [submodule "src/libs/integration_utils"]
 	path = src/libs/integration_utils
 	url = https://github.com/hlopikit/integration_utils
+[submodule "src/integration_utils"]
+	path = src/integration_utils
+	url = https://github.com/hlopikit/integration_utils
