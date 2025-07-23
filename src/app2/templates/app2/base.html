@@ -1,0 +1,14 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'app2/style.css' %}" />
+</head>
+<header>
+  <p>Генерация QR-кода товара</p>
+</header>
+<body>
+  <main>{% block content %}{% endblock %}</main>
+</body>
+</html>

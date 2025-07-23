@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     'integration_utils.bitrix24',
     'app1',
+    'app2',
 ]
 
 MIDDLEWARE = [

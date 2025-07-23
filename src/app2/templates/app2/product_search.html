@@ -1,0 +1,51 @@
+{% extends 'app2/base.html' %}
+
+{% block content %}
+  <form method="post" class="create-form">
+    <div class="autocomplete-container">
+      {% csrf_token %}
+      {{ form }}
+      <div id="autocomplete-results" class="autocomplete-box"></div>
+    </div>
+    <button type="submit" class="submit-button">Сгенерировать</button>
+  </form>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+      const input = document.getElementById('product-autocomplete');
+      const box = document.getElementById('autocomplete-results');
+      const hiddenIdInput = document.querySelector('input[name="product_id"]');
+
+      input.addEventListener('input', function () {
+          const query = input.value;
+
+          fetch(`?q=${encodeURIComponent(query)}`)
+              .then(res => res.json())
+              .then(data => {
+                  box.innerHTML = '';
+
+                  data.forEach(item => {
+                      const div = document.createElement('div');
+                      div.textContent = item.name;
+                      div.addEventListener('click', () => {
+                          input.value = item.name;
+                          hiddenIdInput.value = item.id;
+                          box.innerHTML = '';
+                          box.style.display = 'none';
+                      });
+                      box.appendChild(div);
+                  });
+                  box.style.display = 'block'
+              });
+      });
+
+      // Закрытие списка при клике вне поля
+      document.addEventListener('click', (e) => {
+          if (!box.contains(e.target) && e.target !== input) {
+              box.innerHTML = '';
+              box.style.display = 'none';
+          }
+      });
+  });
+  </script>
+{% endblock %}
