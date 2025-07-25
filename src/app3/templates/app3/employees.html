@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="{% static 'app3/style.css' %}" />
+  <script src="https://api.bitrix24.com/api/v1/"></script>
+</head>
+<header>
+  <p>Сотрудники</p>
+
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Сгенерировать звонки</button>
+  </form>
+</header>
+<body>
+  <main>
+    <table class="employees-table">
+      <thead>
+        <tr>
+          <th>Сотрудник</th>
+          <th>Руководители</th>
+          <th>Отдел</th>
+          <th>Звонки за 24ч</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for employee in employees %}
+          <tr>
+            <td>
+              <a href="#" onclick="openUserSlider({{ employee.id }}); return false;">
+                {{ employee.name }}
+              </a>
+            </td>
+            <td>{{ employee.heads }}</td>
+            <td>{{ employee.department }}</td>
+            <td>{{ employee.calls_count }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </main>
+
+  <script>
+    function openUserSlider(userID) {
+      // Проверка, загружен ли BX24
+      if (typeof BX24 === 'undefined') {
+        console.error('Bitrix24 API не загружен');
+        alert('Ошибка: Bitrix24 API недоступен');
+        return;
+      }
+
+      BX24.init(function () {
+        BX24.openPath(`/company/personal/user/${userID}/`);
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+body {
+  font-family: Arial;
+  color: #333;
+}
+
+header {
+  text-align: center;
+  font-size: 28px;
+  color: #2c3e50;
+  font-weight: bold;
+}
+
+main {
+  max-width: 1000px;
+  margin: 10px auto;
+  padding: 20px;
+}
+
+/* Кнопка генерации звонков */
+button {
+  padding: 12px 24px;
+  background-color: #3498db;
+  color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #2980b9;
+}
+
+/* Таблица сотрудников */
+.employees-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 auto;
+  background-color: #fff;
+}
+
+.employees-table thead {
+  background-color: #f0f0f0;
+}
+
+.employees-table th,
+.employees-table td {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.employees-table th {
+  font-weight: bold;
+}
+
+.employees-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
