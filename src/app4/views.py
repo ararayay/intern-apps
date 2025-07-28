@@ -30,28 +30,27 @@ def companies_map(request: HttpRequest) -> HttpResponse:
 
     # Объединяем данные компаний и адресов
     companies_with_coordinates = []
-    if companies and addresses:
-        # Создаем словарь адресов по ENTITY_ID для быстрого поиска
-        address_dict = {}
-        for address in addresses:
-            entity_id = address.get('ENTITY_ID')
-            if entity_id:
-                address_dict[entity_id] = address
+    # Создаем словарь адресов по ENTITY_ID для быстрого поиска
+    address_dict = {}
+    for address in addresses:
+        entity_id = address.get('ENTITY_ID')
+        if entity_id:
+            address_dict[entity_id] = address
 
-        # Объединяем компании с их адресами
-        for company in companies:
-            company_id = company.get('ID')
-            if company_id and company_id in address_dict:
-                address = address_dict[company_id]
-                full_address = f"{address.get('ADDRESS_1', '')}, {address.get('CITY', '')}"
-                coordinates = get_coordinates(full_address, YANDEX_API_KEY)
+    # Объединяем компании с их адресами
+    for company in companies:
+        company_id = company.get('ID')
+        if company_id and company_id in address_dict:
+            address = address_dict[company_id]
+            full_address = f"{address.get('ADDRESS_1', '')}, {address.get('CITY', '')}"
+            coordinates = get_coordinates(full_address, YANDEX_API_KEY)
 
-                companies_with_coordinates.append({
-                    'id': company_id,
-                    'title': company.get('TITLE', ''),
-                    'address': full_address,
-                    'coordinates': coordinates
-                })
+            companies_with_coordinates.append({
+                'id': company_id,
+                'title': company.get('TITLE', ''),
+                'address': full_address,
+                'coordinates': coordinates
+            })
 
     context = {
         'YANDEX_API_KEY': YANDEX_API_KEY,
