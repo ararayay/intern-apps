@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <p>Привет, {{ request.bitrix_user.last_name }} {{ request.bitrix_user.first_name }}!</p>
+{% endblock %}
+
+{% block content %}
+  {% if messages %}
+		<div class="modal-overlay">
+			<div class="modal-content">
+				{% for message in messages %}
+					<p>{{ message }}</p>
+				{% endfor %}
+			</div>
+		</div>
+	{% endif %}
+
+  <div class="menu">
+    <a href="last_deals/">Последние сделки</a>
+    <a href="add_deal/">Добавить сделку</a>
+    <a href="/products/product_search/">Сгенерировать QR-код для товара</a>
+    <a href="/employees">Сотрудники</a>
+    <a href="/companies_map">Компании</a>
+    <a href="/contacts/add">Добавить контакты</a>
+    <a href="/contacts/export">Экспорт контактов</a>
+  </div>
+{% endblock %}

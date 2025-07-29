@@ -4,7 +4,7 @@ from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from integration_utils.bitrix24.bitrix_user_auth.main_auth import main_auth
 from integration_utils.bitrix24.functions.call_list_method import call_list_method
 
-from .functions import employees_to_ids, departments_to_ids, employees_list_with_heads_and_calls
+from ..functions import employees_to_ids, departments_to_ids, employees_list_with_heads_and_calls
 from datetime import datetime, timedelta
 import random
 

@@ -4,7 +4,7 @@ from django.http import HttpRequest, HttpResponse
 from integration_utils.bitrix24.bitrix_user_auth.main_auth import main_auth
 from integration_utils.bitrix24.functions.call_list_method import call_list_method
 
-from .functions import get_coordinates
+from ..functions import get_coordinates
 
 import os
 from dotenv import load_dotenv

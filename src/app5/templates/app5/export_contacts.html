@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block link %}
+  <link rel="stylesheet" href="{% static 'app5/style.css' %}" />
+{% endblock %}
+
+{% block header %}
+  <p>Экспорт контактов</p>
+{% endblock %}
+
+{% block content %}
+  <form method="post" enctype="multipart/form-data" class="create-form">
+    {% csrf_token %}
+
+    <label for="time">Дата создания</label>
+    <select name="time" id="time">
+      <option value="all">Все</option>
+      <option value="24_hours">За последние 24ч</option>
+    </select>
+
+    <label for="company">Компания</label>
+    <select name="company" id="company">
+      <option value="all">Все</option>
+      {% for company in companies_list %}
+        <option value="{{ company }}">{{ company }}</option>
+      {% endfor %}
+    </select>
+
+    <label for="format">Формат экспорта:</label>
+    <select name="format" id="format">
+      <option value="csv">CSV</option>
+      <option value="xlsx">XLSX</option>
+    </select>
+
+    <button type="submit" class="submit-button">Экспортировать</button>
+  </form>
+{% endblock %}

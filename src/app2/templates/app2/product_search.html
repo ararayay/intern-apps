@@ -1,4 +1,13 @@
-{% extends 'app2/base.html' %}
+{% extends 'base.html' %}
+{% load static %}
+
+{% block link %}
+  <link rel="stylesheet" href="{% static 'app2/style.css' %}" />
+{% endblock %}
+
+{% block header %}
+  <p>Генерация QR-кода товара</p>
+{% endblock %}
 
 {% block content %}
   <form method="post" class="create-form">

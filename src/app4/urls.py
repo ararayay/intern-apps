@@ -1,7 +1,7 @@
 from django.urls import path
-from . import views
+from .views.companies_map import companies_map
 
 
 urlpatterns = [
-    path("", views.companies_map, name="companies_map"),
+    path("", companies_map, name="companies_map"),
 ]

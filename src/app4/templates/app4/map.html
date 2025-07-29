@@ -1,35 +1,38 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://api-maps.yandex.ru/2.1/?apikey={{ YANDEX_API_KEY }}&lang=ru_RU" type="text/javascript"></script>
-</head>
-<body>
-    <div id="map" style="width: 100%; height: 600px; background: lightgray;"></div>
+{% extends 'base.html' %}
+{% load static %}
 
-    <script>
-        const companies = {{ companies_json|safe }};
+{% block link %}
+  <script src="https://api-maps.yandex.ru/2.1/?apikey={{ YANDEX_API_KEY }}&lang=ru_RU" type="text/javascript"></script>
+{% endblock %}
 
-        ymaps.ready(function() {
-            // Создаем карту
-            var myMap = new ymaps.Map('map', {
-                center: [59.938784, 30.314997],
-                zoom: 10
-            });
+{% block header %}
+  <p>Компании на карте</p>
+{% endblock %}
 
-            companies.forEach(function(company) {
-                if (company.coordinates) {
-                    // Создание метки
-                    var placemark = new ymaps.Placemark(company.coordinates, {
-                        balloonContent: `<strong>${company.title}</strong>`
-                    });
+{% block content %}
+  <div id="map" style="width: 100%; height: 600px; background: lightgray;"></div>
 
-                    // Добавление на карту
-                    myMap.geoObjects.add(placemark);
-                }
-            });
-        });
-    </script>
-</body>
-</html>
+  <script>
+      const companies = {{ companies_json|safe }};
+
+      ymaps.ready(function() {
+          // Создаем карту
+          var myMap = new ymaps.Map('map', {
+              center: [59.938784, 30.314997],
+              zoom: 10
+          });
+
+          companies.forEach(function(company) {
+              if (company.coordinates) {
+                  // Создание метки
+                  var placemark = new ymaps.Placemark(company.coordinates, {
+                      balloonContent: `<strong>${company.title}</strong>`
+                  });
+
+                  // Добавление на карту
+                  myMap.geoObjects.add(placemark);
+              }
+          });
+      });
+  </script>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block link %}
+  <link rel="stylesheet" href="{% static 'app5/style.css' %}" />
+{% endblock %}
+
+{% block header %}
+  <p>Добавление контактов</p>
+{% endblock %}
+
+{% block content %}
+  <form method="post" enctype="multipart/form-data" class="create-form">
+    {% csrf_token %}
+    <input type="file" name="file" accept=".csv, .xlsx">
+    <button type="submit" class="submit-button">Загрузить</button>
+  </form>
+{% endblock %}

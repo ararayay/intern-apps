@@ -1,23 +1,21 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-    <link rel="stylesheet" href="{% static 'app2/style.css' %}" />
-</head>
-<header>
-  <p>Информация о товаре</p>
-</header>
-<body>
-  <main>
-    <h1>{{ product.name }}</h1>
-    <h2>{{ product.detailText }}</h2>
 
-    {% if image_url %}
-      <img src="{{ image_url }}" alt="Фото товара" style="max-width: 300px;">
-    {% else %}
-      <p>Изображение отсутствует</p>
-    {% endif %}
-  </main>
-</body>
-</html>
+{% block link %}
+  <link rel="stylesheet" href="{% static 'app2/style.css' %}" />
+{% endblock %}
+
+{% block header %}
+  <p>Информация о товаре</p>
+{% endblock %}
+
+{% block content %}
+  <h1>{{ product.name }}</h1>
+  <h2>{{ product.detailText }}</h2>
+
+  {% if image_url %}
+    <img src="{{ image_url }}" alt="Фото товара" style="max-width: 300px;">
+  {% else %}
+    <p>Изображение отсутствует</p>
+  {% endif %}
+{% endblock %}

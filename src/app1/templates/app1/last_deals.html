@@ -1,10 +1,15 @@
-{% extends 'app1/base.html' %}
+{% extends 'base.html' %}
+{% load static %}
+
+{% block link %}
+  <link rel="stylesheet" href="{% static 'app1/style.css' %}" />
+{% endblock %}
+
+{% block header %}
+  <p>Последние 10 активных сделок</p>
+{% endblock %}
 
 {% block content %}
-  <div class="deals-header">
-    <p>10 ваших последних активных сделок:</p>
-  </div>
-
   <table class="deals-table">
     <thead>
       <tr>

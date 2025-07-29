@@ -1,21 +1,3 @@
-body {
-  font-family: Arial;
-  color: #333;
-}
-
-header {
-  text-align: center;
-  font-size: 28px;
-  color: #2c3e50;
-  font-weight: bold;
-}
-
-main {
-  max-width: 1000px;
-  margin: 10px auto;
-  padding: 20px;
-}
-
 /* Кнопка генерации звонков */
 button {
   padding: 12px 24px;
